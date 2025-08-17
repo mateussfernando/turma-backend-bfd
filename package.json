@@ -1,0 +1,24 @@
+{
+  "name": "turma-backend-bfd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "atividade-1-condicionais.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mateussfernando/turma-backend-bfd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mateussfernando/turma-backend-bfd/issues"
+  },
+  "homepage": "https://github.com/mateussfernando/turma-backend-bfd#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}

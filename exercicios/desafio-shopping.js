@@ -34,7 +34,9 @@ if (valorProdutos < 850) {
     "Compra acima do valor combinado (R$850). Retire alguns itens, ou acrescente até chegar em 1.000"
   );
 } else if (valorProdutos === 850) {
-  console.log(`O valor valorProdutos gasto foi: ${valorProdutos}, sua compra foi aprovada!`);
+  console.log(
+    `O valor valorProdutos gasto foi: ${valorProdutos}, sua compra foi aprovada!`
+  );
 }
 
 function MenuPrincipal() {
@@ -46,14 +48,14 @@ function MenuPrincipal() {
 
   if (lojas === 1) {
     console.log("Você escolheu a loja de Roupas! \n");
-     lojaAtual = `Loja de Roupas`;
+    lojaAtual = `Loja de Roupas`;
     fazerPedido();
   } else if (lojas === 2) {
     console.log("Você escolheu a loja de Perfumes! \n");
-     lojaAtual = `Loja de Perfumes`;
+    lojaAtual = `Loja de Perfumes`;
   } else if (lojas === 3) {
     console.log("Você escolheu a loja de Calçados! \n");
-     lojaAtual = `Loja de Calçados`;
+    lojaAtual = `Loja de Calçados`;
   } else if (lojas === 0) {
     console.log("Você escolheu sair! \n");
   } else {

@@ -17,7 +17,7 @@ const prompt = require("prompt-sync")();
 
 // console.log(idade >= 18 ? "Você é maior de idade." : "Você é menor de idade");
 
-//2 
+//2
 // let cor = prompt("Escolhar uma cor: ");
 // cor = cor.toLowerCase();
 
@@ -27,3 +27,4 @@ const prompt = require("prompt-sync")();
 // let isLogged = true;
 
 // console.log( isLogged ? "Acesso permitido" : "Aceso Negado" );
+

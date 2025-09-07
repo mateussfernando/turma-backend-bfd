@@ -1,68 +1,108 @@
 const prompt = require("prompt-sync")();
 
-let nomeProdutos = [];
-let valorProdutos;
-let lojaAtual;
+// Variáveis iniciais
+let nomeProdutos = []; // nomes dos Produtos
+let totalGasto = 0; // soma dos valores
+let lojaAtual = "";
+let opcao;
+
+// Início
 MenuPrincipal();
 
-function fazerPedido() {
-  if (lojaAtual == "Loja de Roupas") {
-    for (let i = 0; i < 2; i++) {
-      nomeProdutos.push = prompt(`Qual o nome do produto que você quer?`);
-      valorProdutos = +Number(prompt(`Qual o valor do produto?`));
-      AdicionarMaisProdutos();
+// Função do menu principal
+function MenuPrincipal() {
+  while (opcao !== 0) {
+    opcao = Number(
+      prompt(
+        `\nEscolha uma loja:\n` +
+          `1. Loja de Roupas\n` +
+          `2. Loja de Perfumes\n` +
+          `3. Loja de Joias (Brincos)\n` +
+          `0. Sair\n:`
+      )
+    );
+
+    if (opcao === 1) {
+      lojaAtual = "Loja de Roupas";
+      fazerPedido();
+    } else if (opcao === 2) {
+      lojaAtual = "Loja de Perfumes";
+      fazerPedido();
+    } else if (opcao === 3) {
+      lojaAtual = "Loja de Joias";
+      fazerPedido();
+    } else if (opcao === 0) {
+      console.log("\nSaindo do shopping...\n");
+      finalizarCompra();
+    } else {
+      console.log("\nOpção inválida, tente novamente!");
     }
   }
 }
 
-function AdicionarMaisProdutos() {
-  let repetir = prompt(
-    `O valor gasto até agora foi de ${FormatarValor()} na ${lojaAtual}. Deseja adicionar mais produtos?`
-  );
-  repetir.toLocaleLowerCase;
-  if (repetir == "sim" && lojaAtual == "Loja de Roupas") {
-    fazerPedido();
-  } else {
-    MenuPrincipal();
+// Função para adicionar Produtos
+function fazerPedido() {
+  let continuar = "sim";
+
+  while (continuar.toLowerCase() === "sim") {
+    let nome = prompt(
+      `Qual o nome do produto que deseja comprar na ${lojaAtual}? `
+    );
+    let valor = Number(prompt(`Qual o valor do produto "${nome}"? R$ `));
+
+    nomeProdutos.push(nome); // só o nome
+    totalGasto += valor; // só soma o valor
+
+    console.log(`\nProduto "${nome}" adicionado por ${formatarValor(valor)}.`);
+    console.log(`Total gasto até agora: ${formatarValor(totalGasto)}.`);
+
+    continuar = prompt(
+      "Deseja adicionar mais Produtos nesta loja? (sim/não): "
+    );
   }
 }
 
-if (valorProdutos < 850) {
-  console.log("Compra aprovada, mas ainda dava pra acrescentar mais um mimo");
-} else if (valorProdutos > 850 && valorProdutos < 1000) {
-  console.log(
-    "Compra acima do valor combinado (R$850). Retire alguns itens, ou acrescente até chegar em 1.000"
-  );
-} else if (valorProdutos === 850) {
-  console.log(
-    `O valor valorProdutos gasto foi: ${valorProdutos}, sua compra foi aprovada!`
-  );
-}
+// Função para finalizar compra e mostrar resultado
+function finalizarCompra() {
+  console.log("\nResumo da compra:");
 
-function MenuPrincipal() {
-  let lojas = Number(
-    prompt(
-      `Escolha 1,2 ou 3 para escolher a loja. \n 1.Loja de Roupas \n 2.Loja de Perfumes \n 3.Loja de Calçados \n 0.Sair \n:`
-    )
-  );
+  for (let i = 0; i < nomeProdutos.length; i++) {
+    console.log(`${i + 1}. ${nomeProdutos[i]}`);
+  }
 
-  if (lojas === 1) {
-    console.log("Você escolheu a loja de Roupas! \n");
-    lojaAtual = `Loja de Roupas`;
-    fazerPedido();
-  } else if (lojas === 2) {
-    console.log("Você escolheu a loja de Perfumes! \n");
-    lojaAtual = `Loja de Perfumes`;
-  } else if (lojas === 3) {
-    console.log("Você escolheu a loja de Calçados! \n");
-    lojaAtual = `Loja de Calçados`;
-  } else if (lojas === 0) {
-    console.log("Você escolheu sair! \n");
+  console.log(`\nTotal gasto: ${formatarValor(totalGasto)}\n`);
+
+  if (totalGasto < 850) {
+    console.log(
+      "Compra aprovada, mas ainda dava pra acrescentar mais um mimo."
+    );
+  } else if (totalGasto === 850) {
+    console.log(
+      `O valor gasto foi: ${formatarValor(
+        totalGasto
+      )}, sua compra foi aprovada!`
+    );
+  } else if (totalGasto > 850 && totalGasto < 1000) {
+    console.log(
+      "Compra acima do valor combinado (R$850). Retire alguns itens, ou acrescente até chegar em R$1.000."
+    );
+  } else if (totalGasto === 1000) {
+    let desconto = totalGasto * 0.15;
+    let valorFinal = totalGasto - desconto;
+    console.log(`Você ganhou 15% de desconto!`);
+    console.log(
+      `Total com desconto: ${formatarValor(valorFinal)} - Compra aprovada!`
+    );
+  } else if (totalGasto > 1000 && totalGasto <= 1500) {
+    console.log(`Compra reprovada! O limite do cartão foi ultrapassado.`);
+  } else if (totalGasto > 1500) {
+    console.log(`Compra não permitida, você estourou o limite de R$1.500,00!`);
   } else {
-    console.log("Digitou um valor inválido, tente novamente.");
+    console.log("Erro ao calcular a compra.");
   }
 }
 
-function FormatarValor() {
-  return `R$ ${valorProdutos.toFixed(2).replace(".", ",")}`;
+// Função para formatar valores em R$
+function formatarValor(valor) {
+  return `R$ ${valor.toFixed(2).replace(".", ",")}`;
 }

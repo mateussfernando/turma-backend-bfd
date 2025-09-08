@@ -33,7 +33,7 @@ function MenuPrincipal() {
       lojaAtual = "Loja de Joias";
       fazerPedido();
     } else if (opcao === 0) {
-      console.log("\nSaindo do shopping...\n");
+      console.log("\nSaindo do shopping\n");
       finalizarCompra();
     } else {
       console.log("\nOpção inválida, tente novamente!");
@@ -107,3 +107,4 @@ function finalizarCompra() {
 function formatarValor(valor) {
   return `R$ ${valor.toFixed(2).replace(".", ",")}`;
 }
+

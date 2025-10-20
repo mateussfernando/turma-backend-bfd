@@ -1,50 +1,16 @@
-// export class Title {
-//   nome: string;
-//   anoDeLancamento: number;
-//   genero: string;
-//   duracaoEmMinutos: number;
-//   incluindoNoPlano: boolean;
-//   somaDasAvaliacoes: number;
-//   totalDeAvaliacoes: number;
-
-//   constructor(
-//     nome: string,
-//     anoDeLancamento: number,
-//     genero: string,
-//     duracaoEmMinutos: number,
-//     incluindoNoPlano: boolean,
-//     somaDasAvaliacoes: number,
-//     totalDeAvaliacoes: number
-//   ) {
-//     this.nome = nome;
-//     this.anoDeLancamento = anoDeLancamento;
-//     this.genero = genero;
-//     this.duracaoEmMinutos = duracaoEmMinutos;
-//     this.incluindoNoPlano = incluindoNoPlano;
-//     this.somaDasAvaliacoes = somaDasAvaliacoes;
-//     this.totalDeAvaliacoes = totalDeAvaliacoes;
-//   }
-// }
-
-export class Title {
+export class Titulo{
   private _nome: string;
-  private _genero: string;
   private _anoDeLancamento: number;
+  private _genero: string;
   private _duracaoEmMinutos!: number;
   private _incluindoNoPlano!: boolean;
   private _somaDasAvaliacoes!: number;
   private _totalDeAvaliacoes!: number;
 
-  constructor(
-    nome: string,
-    anoDeLancamento: number,
-    genero: string,
-
-  ) {
+  constructor(nome: string, anoDeLancamento: number, genero: string) {
     this._nome = nome;
-    this._genero = genero;
     this._anoDeLancamento = anoDeLancamento;
-
+    this._genero = genero;
   }
 
   get nome(): string {
@@ -54,18 +20,18 @@ export class Title {
     this._nome = nome;
   }
 
-  get anoDeLancamento(): number {
-    return this._anoDeLancamento;
-  }
-  set anoDeLancamento(anoDeLancamento: number) {
-    this._anoDeLancamento = anoDeLancamento;
-  }
-
   get genero(): string {
     return this._genero;
   }
   set genero(genero: string) {
     this._genero = genero;
+  }
+
+  get anoDeLancamento(): number {
+    return this._anoDeLancamento;
+  }
+  set anoDeLancamento(anoDeLancamento: number) {
+    this._anoDeLancamento = anoDeLancamento;
   }
 
   get duracaoEmMinutos(): number {
@@ -94,5 +60,11 @@ export class Title {
   }
   set totalDeAvaliacoes(totalDeAvaliacoes: number) {
     this._totalDeAvaliacoes = totalDeAvaliacoes;
+  }
+
+  public mostrarFicha(): void {
+    console.log(
+      `Nome do Filme: ${this.nome} \nGênero: ${this.genero} \nAno de Lançamento: ${this.anoDeLancamento}\n`
+    );
   }
 }
